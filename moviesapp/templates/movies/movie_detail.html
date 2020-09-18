@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static i18n %} {% block title %}
+Movie Detail: {{ object.title }}{% endblock %} {% block content %}
+<h3>{{ object.title }}</h3>
+<div class="row">
+  <div class="col-sm-12">
+    <dl class="dl-horizontal">
+      <!-- TODO: Implement movie details view-->
+      <table style="border-collapse: collapse; width: 22.9236%; height: 162px;" height="128" border="1">
+		<tbody>
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">year</td>
+		<td style="width: 50%; height: 18px;">{{object.year}}</td>
+		</tr>
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">rated</td>
+		<td style="width: 50%; height: 18px;">{{object.rated}}</td>
+		</tr>
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">released</td>
+		<td style="width: 50%; height: 18px;">{{object.released_on}}</td>
+		</tr>
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">genre</td>
+		<td style="width: 50%; height: 18px;">{{object.genre}}</td>
+		</tr>
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">director</td>
+		<td style="width: 50%; height: 18px;">{{object.director}}</td>
+		</tr>
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">plot</td>
+		<td style="width: 50%; height: 18px;">{{object.plot}}</td>
+		</tr>
+		</tr>
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">Rating General</td>
+		<td style="width: 50%; height: 18px;">{{object.generalRating}}</td>
+		</tr>
+		<form class="form-horizontal" method="post" action="{% url 'movies:rating' object.pk %}">
+		<tr style="height: 18px;">
+		<td style="width: 50%; height: 18px;">Rating General</td>
+		<td style="width: 50%; height: 18px;">{% csrf_token %}{{ form }}</td>
+		<td style="width: 50%; height: 18px;"><button type="submit" class="btn btn-primary">
+        {% trans 'Qualify' %}
+      </button>
+		<tr>
+</tr>
+</form> 
+</body>
+</html>
+</select>
+
+    </dl>
+  </div>
+</div>
+{% endblock %}

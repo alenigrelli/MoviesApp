@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static i18n %} {% block title %}Movies List
+{% endblock %} 
+{% block content %}
+<h3>{% trans 'Movies' %}</h3>
+<table class="table table-striped">
+  <thead>
+  </thead>
+  <form method='GET' action="">
+<input type="text" name="Search" placeholder="Search movie"/>
+<input type="submit"  value="Search"/>
+</form>
+  <tbody>
+    {% for movie in object_list %}
+    <tr>
+      <td>{{ movie.title }}</td>
+      <td> {{movie.generalRating}} </td>
+      <td>
+        <a href="{{ movie.get_absolute_url }}" {{ movie.pk }}>detail</a>
+      </td>
+      <!-- TODO: Render more movie properties and make sure action links work -->
+      <td><a href="{% url 'movies:update' pk=movie.pk %}">Edit</a></td>
+      <td><a href="{% url 'movies:delete' pk=movie.pk %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="6"><a href="{% url 'movies:create' %}">Add new movie</a></td> 
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}
